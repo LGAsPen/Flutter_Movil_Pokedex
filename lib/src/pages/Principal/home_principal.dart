@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_is_empty
+// ignore_for_file: prefer_is_empty, avoid_function_literals_in_foreach_calls
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -18,14 +18,24 @@ class _HomePrincipalState extends State<HomePrincipal> {
   static List<JsonPokemontype> listTypes = [];
   static List<JsonPokemontype> listGeneraciones = [];
 
-  static bool banderaLoader = false;
   int _selectIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: _bottomNavigationBar(),
       body: Stack(
         children: [
+          Container(
+            color: Colors.black12,
+            width: double.infinity,
+            alignment: Alignment.topCenter,
+            child: Image.asset(
+              'assets/icons/snorlax.png',
+              width: size.width * 0.4,
+              height: size.height * 0.4,
+            ),
+          ),
           (_selectIndex != 2) ? pokemonFinder() : Container(),
         ],
       ),
@@ -34,6 +44,7 @@ class _HomePrincipalState extends State<HomePrincipal> {
 
   Widget _bottomNavigationBar() {
     return BottomNavigationBar(
+      backgroundColor: const Color.fromARGB(220, 10, 162, 238),
       items: [
         _widgets.bottomNavigationBarItem("Generation", "pokebola-2.png"),
         _widgets.bottomNavigationBarItem("Type", "pokeball-3.png"),
@@ -55,7 +66,7 @@ class _HomePrincipalState extends State<HomePrincipal> {
     return Align(
       alignment: Alignment.bottomCenter,
       child: SizedBox(
-        height: size.height * 0.2,
+        height: size.height * 0.22,
         child: FutureBuilder(
           future: (_selectIndex == 0)
               ? GetData().generationsPokemon()
@@ -75,12 +86,44 @@ class _HomePrincipalState extends State<HomePrincipal> {
                 itemBuilder: (context, index) {
                   return Container(
                     alignment: Alignment.center,
-                    width: size.width * 0.25,
-                    margin: const EdgeInsets.all(5.0),
-                    color: Colors.red,
-                    child: Text((_selectIndex == 0)
-                        ? listGeneraciones[index].name.toString()
-                        : listTypes[index].name.toString()),
+                    width: size.width * 0.30,
+                    margin: const EdgeInsets.all(9.0),
+                    decoration: _widgets.decorationCard,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        (_selectIndex == 0)
+                            ? FutureBuilder(
+                                future: GetData()
+                                    .imgGenrations(listGeneraciones[index].url),
+                                builder: (context, snapshot) {
+                                  if (!snapshot.hasData) {
+                                    return const Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } else {
+                                    return Image.network(
+                                      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${snapshot.data}.png',
+                                      height: size.height * 0.10,
+                                      loadingBuilder:
+                                          (context, child, loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        }
+                                        return const Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                              )
+                            : Container(),
+                        Text((_selectIndex == 0)
+                            ? listGeneraciones[index].name.toString()
+                            : listTypes[index].name.toString()),
+                      ],
+                    ),
                   );
                 },
               );

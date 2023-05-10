@@ -1,6 +1,8 @@
 # pokemon_pokedex
 
-A new Flutter project.
+This is a new project of flutter used version 3.3.4
+
+This project is under construction
 
 ## Getting Started
 

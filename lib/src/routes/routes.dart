@@ -4,7 +4,7 @@ import 'package:pokemon_pokedex/src/pages/Principal/pokemonGrid.dart';
 
 Map<String, WidgetBuilder> rutas() {
   return <String, WidgetBuilder>{
-    'homePokedex': (context) => const HomePrincipal(),
+    'homePokedex': (context) => HomePrincipal(),
     'homePokemonGrid': (context) => HomepokemonGrid(
           url: '',
         )

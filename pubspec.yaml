@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_svg: ^1.0.3
   animate_do: ^2.1.0
+  provider: ^6.0.5
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
   assets:
     - assets/
     - assets/icons/
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -76,10 +78,19 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: RubikDirt-Regular
+      fonts:
+        - asset: assets/fonts/RubikDirt-Regular.ttf
+    - family: RubikMoonrocks-Regular
+      fonts:
+        - asset: assets/fonts/RubikMoonrocks-Regular.ttf
+    - family: Quando-Regular
+      fonts:
+        - asset: assets/fonts/Quando-Regular.ttf
+    - family: RampartOne-Regular
+      fonts:
+        - asset: assets/fonts/RampartOne-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

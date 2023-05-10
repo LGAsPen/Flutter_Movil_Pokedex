@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pokemon_pokedex/provider/provider_selection.dart';
 import 'package:pokemon_pokedex/src/routes/routes.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,14 +13,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      initialRoute: 'homePokedex',
-      routes: rutas(),
-    );
+    final ThemeData theme = ThemeData();
+
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ProviderSelection>(
+              create: (_) => ProviderSelection())
+        ],
+        builder: (context, _) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            initialRoute: 'homePokedex',
+            routes: rutas(),
+          );
+        });
   }
 }

@@ -15,7 +15,7 @@ class HomepokemonGrid extends StatefulWidget {
 }
 
 class _HomepokemonGridState extends State<HomepokemonGrid> {
-  List<JsonPokemontype> pokemonData = [];
+  List<JsonPokemon> pokemonData = [];
 
   @override
   void initState() {
@@ -75,11 +75,11 @@ class _HomepokemonGridState extends State<HomepokemonGrid> {
     pokemonData = [];
     var convertJson = jsonDecode(json) as List;
 
-    List<JsonPokemontype> jsonClass =
-        convertJson.map((e) => JsonPokemontype.fromJson(e)).toList();
+    List<JsonPokemon> jsonClass =
+        convertJson.map((e) => JsonPokemon.fromJson(e)).toList();
 
     for (var element in jsonClass) {
-      pokemonData.add(JsonPokemontype(name: element.name, url: element.url));
+      pokemonData.add(JsonPokemon(name: element.name, url: element.url));
     }
   }
 

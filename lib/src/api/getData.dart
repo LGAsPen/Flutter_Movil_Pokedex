@@ -33,8 +33,8 @@ class GetData {
         dynamic jsonNamePokemon = json.encode(jsonResults['pokemon_species']);
 
         var tagObjsJson = jsonDecode(jsonNamePokemon) as List;
-        List<JsonPokemontype> tagObjs = tagObjsJson
-            .map((tagJson) => JsonPokemontype.fromJson(tagJson))
+        List<JsonPokemon> tagObjs = tagObjsJson
+            .map((tagJson) => JsonPokemon.fromJson(tagJson))
             .toList();
         for (var i = 0; i < 1; i++) {
           pokemon = '${tagObjs[0].url}';

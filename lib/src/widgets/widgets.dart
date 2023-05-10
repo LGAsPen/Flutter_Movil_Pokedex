@@ -4,8 +4,8 @@ class Widgets {
   final decorationCard = BoxDecoration(
     gradient: LinearGradient(
       colors: <Color>[
-        const Color.fromARGB(188, 118, 155, 172).withOpacity(0.2),
-        const Color.fromARGB(255, 0, 170, 255).withOpacity(0.9),
+        Colors.black26.withOpacity(0.2),
+        Colors.white.withOpacity(0.5),
       ],
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
@@ -20,5 +20,21 @@ class Widgets {
       ),
       label: label,
     );
+  }
+
+  gridView(dynamic jsonClass, Size size) {
+    return GridView.builder(
+        itemCount: jsonClass.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisExtent: size.height * 0.29,
+        ),
+        itemBuilder: ((context, index) {
+          return Container(
+            margin: EdgeInsets.only(left: 10.0, right: 10.0, top: 15.0),
+            color: Colors.yellow,
+            child: Text(jsonClass[index].name.toString()),
+          );
+        }));
   }
 }

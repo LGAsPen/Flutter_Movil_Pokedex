@@ -2,14 +2,13 @@
 
 import 'dart:convert';
 
-JsonPokemontype jsonPokemontypeFromJson(String str) =>
-    JsonPokemontype.fromJson(json.decode(str));
+JsonPokemon jsonPokemontypeFromJson(String str) =>
+    JsonPokemon.fromJson(json.decode(str));
 
-String jsonPokemontypeToJson(JsonPokemontype data) =>
-    json.encode(data.toJson());
+String jsonPokemontypeToJson(JsonPokemon data) => json.encode(data.toJson());
 
-class JsonPokemontype {
-  JsonPokemontype({
+class JsonPokemon {
+  JsonPokemon({
     this.name,
     this.url,
   });
@@ -17,8 +16,7 @@ class JsonPokemontype {
   String? name;
   String? url;
 
-  factory JsonPokemontype.fromJson(Map<String, dynamic> json) =>
-      JsonPokemontype(
+  factory JsonPokemon.fromJson(Map<String, dynamic> json) => JsonPokemon(
         name: json["name"],
         url: json["url"],
       );
